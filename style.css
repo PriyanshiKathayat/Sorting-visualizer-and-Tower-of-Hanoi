@@ -1,0 +1,264 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+}
+/* Navbar */
+.navbar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f39c12;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f39c12;
+}
+
+p1{
+    color: #2c3e50;
+}
+h1 {
+    font-size: 2.5rem;
+    color: #444;
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+/* Controls Section */
+.controls {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    display: inline-block;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.sort-options {
+    display: inline-block;
+    margin: 10px 0;
+    text-align: left;
+}
+
+label {
+    font-size: 1rem;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/* Array Values Display */
+.array-values {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #555;
+}
+
+/* Visualizer Area */
+.visualizer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 350px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Bars for Sorting Visualizer */
+.bar {
+    width: 40px;
+    background: linear-gradient(to top, #4CAF50, #8BC34A);
+    margin: 0 4px;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s ease;
+}
+
+/* Pegs for Tower of Hanoi */
+.peg {
+    width: 120px;
+    height: 250px;
+    background: #f0f0f0;
+    border: 2px solid #aaa;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 10px;
+}
+
+/* Disks for Tower of Hanoi */
+.disk {
+    position: relative;
+    height: 22px;
+    background: linear-gradient(to right, #ff5722, #ff7043);
+    border: 1px solid #d84315;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: bottom 0.3s ease;
+}
+
+/* Disk Size Variations */
+.disk[data-size="1"] { background: linear-gradient(to right, #4caf50, #81c784); }
+.disk[data-size="2"] { background: linear-gradient(to right, #ffeb3b, #fdd835); }
+.disk[data-size="3"] { background: linear-gradient(to right, #2196f3, #64b5f6); }
+.disk[data-size="4"] { background: linear-gradient(to right, #ff5722, #ff7043); }
+.disk[data-size="5"] { background: linear-gradient(to right, #9c27b0, #ba68c8); }
+
+/* For Smaller Screens */
+@media (max-width: 600px) {
+    .visualizer {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+    }
+    .peg {
+        width: 80%;
+        height: 150px;
+    }
+    .bar {
+        width: 20px;
+    }
+}
+.site-footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.site-footer .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.site-footer strong {
+    color: #f39c12;
+}
+
+@media (max-width: 600px) {
+    .site-footer {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+}
+
+
+
+.hanoi-visualizer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.peg {
+    width: 120px;
+    height: 250px;
+    background: #f0f0f0;
+    border: 2px solid #aaa;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.disk {
+    height: 24px;
+    background: linear-gradient(to right, #ff5722, #ff7043);
+    border: 1px solid #d84315;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 10px;
+    margin: 2px 0;
+    transition: all 0.5s ease;
+}
+
