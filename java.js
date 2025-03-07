@@ -1,7 +1,7 @@
 let array = [];
 
 function generateArray() {
-    array = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100) + 1);
+    array = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 1);
     displayArray(array);
     displayArrayValues(array);  // Show the actual numbers
 }
@@ -93,6 +93,7 @@ function startTowerOfHanoi() {
     }
 
     // Clear pegs before new visualization
+
     document.getElementById('peg1').innerHTML = '';
     document.getElementById('peg2').innerHTML = '';
     document.getElementById('peg3').innerHTML = '';
