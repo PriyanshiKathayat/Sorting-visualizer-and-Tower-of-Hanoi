@@ -35,7 +35,15 @@ async function startSorting() {
         await selectionSort(array);
     } else if (selectedSort.value === 'bubble') {
         await bubbleSort(array);
+    } else if (selectedSort.value === 'quick') {
+        await quickSort(array);
+    } else if (selectedSort.value === 'merge') {
+        await mergeSort(array);
+    }else if (selectedSort.value === 'heap') {
+        await heapSort(array);
     }
+    // array.sort(function(a, b){return a - b});;
+    // displayArrayValues(array);
 }
 
 async function insertionSort(arr) {
@@ -45,11 +53,12 @@ async function insertionSort(arr) {
             arr[j + 1] = arr[j];
             j--;
             displayArray(arr);
-            await delay(500);
+            await delay(1000);
         }
         arr[j + 1] = key;
         displayArray(arr);
-        await delay(500);
+        displayArrayValues(arr);
+        await delay(1000);
     }
 }
 
@@ -63,7 +72,8 @@ async function selectionSort(arr) {
         }
         [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
         displayArray(arr);
-        await delay(500);
+        displayArrayValues(arr);
+        await delay(1000);
     }
 }
 
@@ -73,11 +83,130 @@ async function bubbleSort(arr) {
             if (arr[j] > arr[j + 1]) {
                 [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
                 displayArray(arr);
-                await delay(500);
+                displayArrayValues(arr);
+                await delay(1000);
             }
         }
     }
 }
+
+async function quickSort(arr, low = 0, high = arr.length - 1) {
+    if (low < high) {
+        const pi = await partition(arr, low, high);
+
+        await quickSort(arr, low, pi - 1);  // Before partition
+        await quickSort(arr, pi + 1, high); // After partition
+    }
+}
+
+async function partition(arr, low, high) {
+    const pivot = arr[high];
+    let i = low - 1;
+
+    for (let j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]];  // Swap
+            displayArray(arr);
+            displayArrayValues(arr);
+            await delay(1000);
+        }
+    }
+
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];  // Swap pivot
+    displayArray(arr);
+    displayArrayValues(arr);
+    await delay(1000);
+
+    return i + 1;
+}
+
+async function heapSort(arr) {
+    const n = arr.length;
+
+    // Build a max heap
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        await heapify(arr, n, i);
+    }
+
+    // Extract elements from the heap one by one
+    for (let i = n - 1; i > 0; i--) {
+        [arr[0], arr[i]] = [arr[i], arr[0]];  // Swap
+        displayArray(arr);
+        displayArrayValues(arr);
+        await delay(500);
+
+        // Heapify the root element again
+        await heapify(arr, i, 0);
+    }
+}
+
+async function heapify(arr, n, i) {
+    let largest = i;
+    let left = 2 * i + 1;
+    let right = 2 * i + 2;
+
+    if (left < n && arr[left] > arr[largest]) {
+        largest = left;
+    }
+
+    if (right < n && arr[right] > arr[largest]) {
+        largest = right;
+    }
+
+    if (largest !== i) {
+        [arr[i], arr[largest]] = [arr[largest], arr[i]];
+        displayArray(arr);
+        displayArrayValues(arr);
+        await delay(1000);
+
+        await heapify(arr, n, largest);
+    }
+}
+
+async function mergeSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+
+    await mergeSort(left);
+    await mergeSort(right);
+
+    const merged = await merge(left, right);
+    for (let i = 0; i < merged.length; i++) {
+        arr[i] = merged[i];
+    }
+
+    displayArray(arr);
+    displayArrayValues(arr);
+    await delay(1000);
+
+    return arr;
+}
+
+async function merge(left, right) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
+
+
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -87,10 +216,10 @@ function delay(ms) {
 
 function startTowerOfHanoi() {
     const numDisks = parseInt(document.getElementById('numDisks').value);
-    if (numDisks < 1 || numDisks > 6) {
-        alert("Please enter a number between 1 and 6");
-        return;
-    }
+    // if (numDisks < 1 || numDisks > 6) {
+    //     alert("Please enter a number between 1 and 6");
+    //     return;
+    // }
 
     // Clear pegs before new visualization
 
@@ -103,7 +232,7 @@ function startTowerOfHanoi() {
     for (let i = numDisks; i > 0; i--) {
         const disk = document.createElement('div');
         disk.className = 'disk';
-        disk.style.width = (30 + i * 15) + 'px';
+        disk.style.width = (20 + i * 15) + 'px';
         disk.innerText = i;
         disk.dataset.size = i;
         peg1.appendChild(disk);

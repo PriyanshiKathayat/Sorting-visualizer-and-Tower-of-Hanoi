@@ -27,10 +27,13 @@
             <label><input type="radio" name="sort" value="insertion"> Insertion Sort</label>
             <label><input type="radio" name="sort" value="selection"> Selection Sort</label>
             <label><input type="radio" name="sort" value="bubble"> Bubble Sort</label>
-            <button onclick="startSorting()">Start Sorting</button>
+            <label><input type="radio" name="sort" value="quick"> Quick Sort</label>
+            <label><input type="radio" name="sort" value="merge"> Merge Sort</label>
+            <label><input type="radio" name="sort" value="heap"> Heap Sort</label>
         </div>
+        <button onclick="startSorting()">Start Sorting</button>
 
-        <button onclick="startTowerOfHanoi()">Tower of Hanoi</button>
+        <!-- <button onclick="startTowerOfHanoi()">Tower of Hanoi</button> -->
     </div>
     
     
@@ -40,7 +43,7 @@
     <div id="tower-of-hanoi" class="controls">
         <h2>Tower of Hanoi Visualizer</h2>
         <label for="numDisks">Enter Number of Disks:</label>
-        <input type="number" id="numDisks" min="3" max="11" value="3">
+        <input type="number" id="numDisks" min="3" max="6" value="3">
         <button onclick="startTowerOfHanoi()">Start Tower of Hanoi</button>
     
         <div id="hanoiVisualizer" class="hanoi-visualizer">
@@ -55,12 +58,10 @@
         <div class="footer-content">
             <p1 id="aboutus" class="controls"></p1>
             <p>Sorting Visualizer & Tower of Hanoi Visualizer</p>
-            <p>Created by: <strong>Your Project Team</strong></p>
+            <p>Created by: <strong>The Sorting Wizards Team</strong></p>
             <p>Contact us at :priyanshikathayat30@gmail.com</p>
             <p>&copy; 2025 Sorting & Hanoi Visualizer. All Rights Reserved.</p>
-            <p>For educational purposes only.</p>
         </div>
-        <p>Created by: <strong>The Sorting Wizards Team</strong></p>
 
     </footer>
     
@@ -69,7 +70,6 @@
     <script src="java.js"></script>
 </body>
 </html>
-
 
 
 

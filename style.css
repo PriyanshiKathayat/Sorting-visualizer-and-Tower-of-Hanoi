@@ -142,8 +142,8 @@ label {
 }
 
 /* Pegs for Tower of Hanoi */
-.peg {
-    width: 120px;
+ .peg {
+    width: 500px;
     height: 250px;
     background: #f0f0f0;
     border: 2px solid #aaa;
@@ -155,7 +155,7 @@ label {
     padding-top: 10px;
 }
 
-/* Disks for Tower of Hanoi */
+/*Disks for Tower of Hanoi*/
 .disk {
     position: relative;
     height: 22px;
@@ -171,12 +171,18 @@ label {
     transition: bottom 0.3s ease;
 }
 
+
+
 /* Disk Size Variations */
+
 .disk[data-size="1"] { background: linear-gradient(to right, #4caf50, #81c784); }
 .disk[data-size="2"] { background: linear-gradient(to right, #ffeb3b, #fdd835); }
 .disk[data-size="3"] { background: linear-gradient(to right, #2196f3, #64b5f6); }
 .disk[data-size="4"] { background: linear-gradient(to right, #ff5722, #ff7043); }
 .disk[data-size="5"] { background: linear-gradient(to right, #9c27b0, #ba68c8); }
+.disk[data-size="6"] { background: linear-gradient(to right, #e91e63, #f06292); }
+/* .disk[data-size="7"] { background: linear-gradient(to right, #00bcd4, #4dd0e1); }
+.disk[data-size="8"] { background: linear-gradient(to right, #3f51b5, #5c6bc0); } */
 
 /* For Smaller Screens */
 @media (max-width: 600px) {
@@ -190,7 +196,7 @@ label {
         height: 150px;
     }
     .bar {
-        width: 20px;
+        width: 120px;
     }
 }
 .site-footer {
@@ -261,4 +267,3 @@ label {
     margin: 2px 0;
     transition: all 0.5s ease;
 }
-
