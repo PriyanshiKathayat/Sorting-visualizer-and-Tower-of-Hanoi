@@ -8,17 +8,16 @@
 
     <h1>Sorting Visualizer & Tower of Hanoi</h1>
     <!-- Navigation Bar -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="logo">Visualizer Pro</div>
-        <ul class="nav-links">
-            <li><a href="#sorting-visualizer">Sorting Visualizer</a></li>
-            <li><a href="#tower-of-hanoi">Tower of Hanoi</a></li>
-            <li><a href="#aboutus">About Us</a></li>
-            
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Visualizer Pro</div>
+            <ul class="nav-links">
+                <li><a href="#sorting-visualizer">Sorting Visualizer</a></li>
+                <li><a href="#tower-of-hanoi">Tower of Hanoi</a></li>
+                <li><a href="#aboutus">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="controls">
         <button onclick="generateArray()">Generate Array</button>
@@ -27,22 +26,20 @@
             <label><input type="radio" name="sort" value="insertion"> Insertion Sort</label>
             <label><input type="radio" name="sort" value="selection"> Selection Sort</label>
             <label><input type="radio" name="sort" value="bubble"> Bubble Sort</label>
-            
         </div>
-        <button onclick="startSorting()">Start Sorting</button>
-
-        <!-- <button onclick="startTowerOfHanoi()">Tower of Hanoi</button> -->
+        <button id="startSortBtn" onclick="startSorting()">Start Sorting</button>
     </div>
-    
-    
 
     <div id="visualizer" class="visualizer"></div>
     <div id="arrayValues" class="array-values"></div>
+
     <div id="tower-of-hanoi" class="controls">
         <h2>Tower of Hanoi Visualizer</h2>
         <label for="numDisks">Enter Number of Disks:</label>
-        <input type="number" id="numDisks" min="3" max="6" value="3">
-        <button onclick="startTowerOfHanoi()">Start Tower of Hanoi</button>
+        <input type="number" id="numDisks" min="3" max="10" value="3">
+        
+        <button id="initBtn" onclick="initializeTowerOfHanoi()">Initialize Tower</button>
+        <button id="startBtn" onclick="startTowerOfHanoi()" disabled>Start Animation</button>
     
         <div id="hanoiVisualizer" class="hanoi-visualizer">
             <div class="peg" id="peg1"></div>
@@ -50,24 +47,18 @@
             <div class="peg" id="peg3"></div>
         </div>
     </div>
-   
     
+
     <footer class="site-footer">
         <div class="footer-content">
-            <p1 id="aboutus" class="controls"></p1>
+            <p id="aboutus" class="controls"></p>
             <p>Sorting Visualizer & Tower of Hanoi Visualizer</p>
             <p>Created by: <strong>The Sorting Wizards Team</strong></p>
             <p>Contact us at :priyanshikathayat30@gmail.com</p>
             <p>&copy; 2025 Sorting & Hanoi Visualizer. All Rights Reserved.</p>
         </div>
-
     </footer>
-    
-
 
     <script src="java.js"></script>
 </body>
 </html>
-
-
-

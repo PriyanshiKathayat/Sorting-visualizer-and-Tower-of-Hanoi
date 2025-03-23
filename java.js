@@ -3,7 +3,7 @@ let array = [];
 function generateArray() {
     array = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 1);
     displayArray(array);
-    displayArrayValues(array);  // Show the actual numbers
+    displayArrayValues(array);
 }
 
 function displayArrayValues(arr) {
@@ -28,6 +28,7 @@ async function startSorting() {
         alert("Please select a sorting algorithm!");
         return;
     }
+    document.getElementById('startSortBtn').disabled = true;
 
     if (selectedSort.value === 'insertion') {
         await insertionSort(array);
@@ -35,15 +36,8 @@ async function startSorting() {
         await selectionSort(array);
     } else if (selectedSort.value === 'bubble') {
         await bubbleSort(array);
-    } else if (selectedSort.value === 'quick') {
-        await quickSort(array);
-    } else if (selectedSort.value === 'merge') {
-        await mergeSort(array);
-    }else if (selectedSort.value === 'heap') {
-        await heapSort(array);
     }
-    // array.sort(function(a, b){return a - b});;
-    // displayArrayValues(array);
+    document.getElementById('startSortBtn').disabled = false;
 }
 
 async function insertionSort(arr) {
@@ -92,21 +86,54 @@ async function bubbleSort(arr) {
 
 
 // Tower of Hanoi Logic
+let isHanoiInProgress = false;
 
-function startTowerOfHanoi() {
+function initializeTowerOfHanoi() {
+    document.getElementById('initBtn').disabled = true;
+
     const numDisks = parseInt(document.getElementById('numDisks').value);
-    // if (numDisks < 1 || numDisks > 6) {
-    //     alert("Please enter a number between 1 and 6");
-    //     return;
-    // }
 
-    // Clear pegs before new visualization
+    if (numDisks < 1 || numDisks > 10) {
+        alert("Please enter a number between 1 and 10");
+        return;
+    }
 
     document.getElementById('peg1').innerHTML = '';
     document.getElementById('peg2').innerHTML = '';
     document.getElementById('peg3').innerHTML = '';
 
-    // Create initial disks on peg 1
+    const peg1 = document.getElementById('peg1');
+    for (let i = numDisks; i > 0; i--) {
+        const disk = document.createElement('div');
+        disk.className = 'disk';
+        disk.style.width = (20 + i * 9) + 'px';
+        disk.innerText = i;
+        disk.dataset.size = i;
+        peg1.appendChild(disk);
+    }
+    document.getElementById('startBtn').disabled = false;
+}
+
+function startTowerOfHanoi() {
+    if (isHanoiInProgress) {
+        alert("A Tower of Hanoi puzzle is already in progress!");
+        return;
+    }
+
+    const numDisks = parseInt(document.getElementById('numDisks').value);
+
+    if (numDisks < 1 || numDisks > 10) {
+        alert("Please enter a number between 1 and 10");
+        return;
+    }
+
+    document.getElementById('startBtn').disabled = true;
+    document.getElementById('initBtn').disabled = true;
+
+    document.getElementById('peg1').innerHTML = '';
+    document.getElementById('peg2').innerHTML = '';
+    document.getElementById('peg3').innerHTML = '';
+
     const peg1 = document.getElementById('peg1');
     for (let i = numDisks; i > 0; i--) {
         const disk = document.createElement('div');
@@ -117,44 +144,46 @@ function startTowerOfHanoi() {
         peg1.appendChild(disk);
     }
 
-    // Perform the Hanoi algorithm
-    const moves = [];
-    hanoiSolver(numDisks, 1, 3, 2, moves);
+    setTimeout(() => {
+        isHanoiInProgress = true;
 
-    // Animate the moves
-    animateMoves(moves);
+        const moves = [];
+        hanoiSolver(numDisks, 1, 3, 2, moves);
+
+        animateMoves(moves);
+    }, 100);
 }
 
-// Recursive solver for Tower of Hanoi
 function hanoiSolver(n, fromPeg, toPeg, auxPeg, moves) {
     if (n === 1) {
-        moves.push({from: fromPeg, to: toPeg});
+        moves.push({ from: fromPeg, to: toPeg });
         return;
     }
     hanoiSolver(n - 1, fromPeg, auxPeg, toPeg, moves);
-    moves.push({from: fromPeg, to: toPeg});
+    moves.push({ from: fromPeg, to: toPeg });
     hanoiSolver(n - 1, auxPeg, toPeg, fromPeg, moves);
 }
 
-// Animate the moves step by step
 function animateMoves(moves) {
     let index = 0;
 
     function moveNext() {
         if (index >= moves.length) {
-            return; // All moves completed
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('initBtn').disabled = false;
+            isHanoiInProgress = false;
+            return;
         }
 
-        const {from, to} = moves[index];
+        const { from, to } = moves[index];
         moveDisk(from, to);
         index++;
-        setTimeout(moveNext, 800); // Delay between moves
+        setTimeout(moveNext, 800);
     }
 
     moveNext();
 }
 
-// Move disk from one peg to another
 function moveDisk(from, to) {
     const fromPeg = document.getElementById(`peg${from}`);
     const toPeg = document.getElementById(`peg${to}`);
@@ -163,4 +192,8 @@ function moveDisk(from, to) {
     if (disk) {
         toPeg.appendChild(disk);
     }
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
